@@ -74,4 +74,6 @@ rm /tmp/xray_base64.txt /tmp/xray.jks
 VERSION_CODE=$(cat app/versionCode.txt)
 ((VERSION_CODE += ABI_ID))
 BUILD_NAME="Xray-$VERSION_CODE.apk"
-cp "app/**/*.apk" "$DIST_DIR/$BUILD_NAME"
+find app -name "*.apk" -type f -print -quit | xargs -I {} cp {} "$DIST_DIR/$BUILD_NAME"
+
+#cp "app/**/*.apk" "$DIST_DIR/$BUILD_NAME"
