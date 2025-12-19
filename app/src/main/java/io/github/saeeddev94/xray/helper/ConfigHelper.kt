@@ -44,8 +44,9 @@ class ConfigHelper(
     private fun processArray(key: String, config: String, mode: Config.Mode) {
         val oldValue = JsonHelper.getArray(base, key)
         val newValue = JsonHelper.makeArray(config)
+        val mergeKey = if (key == "outbounds") "tag" else "protocol"
         val final = if (mode == Config.Mode.Replace) newValue
-        else JsonHelper.mergeArrays(oldValue, newValue, "protocol")
+        else JsonHelper.mergeArrays(oldValue, newValue, mergeKey)
         base.put(key, final)
     }
 
