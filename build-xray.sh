@@ -67,11 +67,11 @@ gradle clean
 # Build app
 echo "$KS_FILE" > /tmp/xray_base64.txt
 base64 -d /tmp/xray_base64.txt > /tmp/xray.jks
-gradle -PabiId=$ABI_ID -PabiTarget=$ABI_TARGET assembleRelease
+gradle -PabiId=$ABI_ID -PabiTarget=$ABI_TARGET assembleDebug
 rm /tmp/xray_base64.txt /tmp/xray.jks
 
 # Build name
 VERSION_CODE=$(cat app/versionCode.txt)
 ((VERSION_CODE += ABI_ID))
-BUILD_NAME="Xray-$RELEASE_TAG-$VERSION_CODE.apk"
-mv "app/build/outputs/apk/release/app-$ABI_TARGET-release.apk" "$DIST_DIR/$BUILD_NAME"
+BUILD_NAME="Xray-$VERSION_CODE.apk"
+cp "app/build/outputs/apk/*/app-$ABI_TARGET-release.apk" "$DIST_DIR/$BUILD_NAME"
