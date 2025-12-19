@@ -58,5 +58,5 @@ jobs:
           name: ${{ github.ref_name }}
           prerelease: false
           draft: false
-          files: "dist/*.apk"
+          files: "**/*.apk"
         #  body_path: ${{ github.workspace }}/metadata/en-US/changelogs/${{ env.VERSION_CODE }}.txt
